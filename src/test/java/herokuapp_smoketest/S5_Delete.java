@@ -12,18 +12,21 @@ public class S5_Delete extends HerOkuAppBaseUrl {
     /*
     Given
         https://restful-booker.herokuapp.com/booking/{id}
+
     When
         Send delete request
+
     Then
         Status code should be 201
+
     And
-        Response body should be "Created"
+        Body should be "Created"
      */
 
     @Test
     public void deleteTest(){
         //Set the url
-        spec.pathParams("first", "booking", "second", bookingId);
+        spec.pathParams("first","booking","second",bookingId);
 
         //Set the expected data
         String expectedData = "Created";
@@ -33,7 +36,7 @@ public class S5_Delete extends HerOkuAppBaseUrl {
         response.prettyPrint();
 
         //Do assertion
-        assertEquals(201,response.statusCode());
+        assertEquals(201, response.statusCode());
         assertEquals(expectedData, response.asString());
 
     }

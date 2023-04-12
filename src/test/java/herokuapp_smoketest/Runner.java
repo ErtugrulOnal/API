@@ -12,8 +12,10 @@ import org.junit.runners.Suite;
         S4_Patch.class,
         S5_Delete.class,
         S6_Get_Negative.class
+
 })
 
 public class Runner {
+
 
 }

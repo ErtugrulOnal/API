@@ -12,29 +12,32 @@ public class S6_Get_Negative extends HerOkuAppBaseUrl {
     /*
     Given
         https://restful-booker.herokuapp.com/booking/{id}
+
     When
         Send get request
+
     Then
         Status code should be 404
+
     And
-        Response body should be "Not Found"
+        Body should be "Not Found"
+
      */
 
     @Test
-    public void get02(){
+    public void getNegativeTest(){
         //Set the url
-        spec.pathParams("first", "booking", "second", bookingId);
+        spec.pathParams("first","booking","second",bookingId);
 
         //Set the expected data
         String expectedData = "Not Found";
 
-        //Send the request and get the response
+        //Send the request agd get the response
         Response response = given(spec).get("{first}/{second}");
         response.prettyPrint();
 
         //Do assertion
-        assertEquals(404,response.statusCode());
+        assertEquals(404, response.statusCode());
         assertEquals(expectedData,response.asString());
-
     }
 }

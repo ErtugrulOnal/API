@@ -16,29 +16,28 @@ public class S3_Get extends HerOkuAppBaseUrl {
     Given
         https://restful-booker.herokuapp.com/booking/{id}
     When
-        Send the get request
+        Send get request
     Then
-        Status Code should be 200
+        Status code should be 200
     And
-        Response body should be
-        {
-            "firstname" : "Mark",
-            "lastname" : "Twain",
-            "totalprice" : 555,
-            "depositpaid" : false,
-            "bookingdates" : {
-                "checkin" : "2023-01-01",
-                "checkout" : "2024-01-01"
+        Body should be :
+           {
+            "firstname": "Mark",
+            "lastname": "Twain",
+            "totalprice": 555,
+            "depositpaid": false,
+            "bookingdates": {
+                "checkin": "2023-01-01",
+                "checkout": "2024-01-01"
             },
-            "additionalneeds" : "Extra Pillow"
-         }
-
+            "additionalneeds": "Extra Pillow"
+          }
      */
 
     @Test
-    public void get01() {
+    public void getTest() {
         //Set the url
-        spec.pathParams("first","booking","second",bookingId);
+        spec.pathParams("first", "booking", "second", bookingId);
 
         //Set the expected data
         BookingDatesPojo bookingDatesPojo = new BookingDatesPojo("2023-01-01","2024-01-01");
@@ -47,10 +46,10 @@ public class S3_Get extends HerOkuAppBaseUrl {
 
         //Send the request and get the response
         Response response = given(spec).get("{first}/{second}");
-        response.prettyPrint();
+        //response.prettyPrint();
 
         //Do assertion
-        BookingPojo actualData = ObjectMapperUtils.convertJsonToJavaObject(response.asString(),BookingPojo.class);
+        BookingPojo actualData = ObjectMapperUtils.convertJsonToJavaObject(response.asString(), BookingPojo.class);
         System.out.println("actualData = " + actualData);
 
         assertEquals(200, response.statusCode());
